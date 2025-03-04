@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="shortcut icon" href="images/favicon_solid.png" type="image/png">
+  <title> AlgoSpear </title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/responsive.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@0.9.8/dist/driver.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/driver.js@0.9.8/dist/driver.min.js"></script>
+  
+
+  <style>
+    
+
+    .linked-list-visualizer {
+        text-align: center;
+        margin-top: 40px;
+        padding: 20px;
+        background-color: #ffffff;
+        font-family: Arial, sans-serif;
+
+    }
+
+    
+    .linked-list-visualizer h2 {
+        margin-top: 1px;
+        margin-bottom: 30px;
+        color: #ffffff;
+        font-weight: 800;
+        text-shadow: 2px 1px 4px #000000;
+        
+
+    }
+    .input-container {
+      margin-bottom: 20px;
+    }
+    .list-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      text-align: center;
+      padding: 25px;
+      position: relative;
+      margin: auto;
+      height: 200px;
+      text-shadow: 2px 3px 5px #053107;
+      border: 2px solid #1701a2;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      width: 1000px;
+      border-width: 4px;
+      line-height: 20px;
+      text-shadow: -2px 4px 5px #000000;
+      
+      /** background image **/
+      --color: #E1E1E1;
+  background-color: #F3F3F3;
+  background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent),
+      linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent);
+  background-size: 55px 55px;
+    }
+
+    .node {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 75px;
+      height: 75px;
+      background-color: #4CAF50;
+      border: 3px solid #046e07;
+      color: white;
+      font-weight: bold;
+      border-radius: 100%;
+      margin: 0 10px;
+      position: relative;
+      transition: background-color 0.3s;
+    }
+
+    
+
+    .node .arrow {
+  position: absolute;
+  right: -23px; /* Adjust this value for arrow spacing */
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  color: #333;
+}   
+    .node.head-node {
+      background-color: red; /* Orange color for the head node */
+      border-color: gold;
+      font-weight: bold;
+      color: white;
+    }
+
+
+    .node.highlight {
+      background-color: yellow !important;
+      animation: highlight 1s ease-out;
+    }
+    .node.fade-out {
+      animation: fadeOut 0s ease-out;
+    }
+    .node.new-node-highlight {
+      background-color: yellow !important;
+      animation: newNodeHighlight 1s ease;
+      transition-timing-function: cubic-bezier(0.25, 0.5, 0.25, 0.75);
+
+    }
+    .node .value {
+      font-size: 20px;
+    }
+    .arrow-null {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateX(-128%) translateY(-50%);
+  font-size: 24px;
+  color: #333;
+}
+
+    .end-node .value {
+      color: #555;
+      font-style: italic;
+    }
+    .linked-list-visualizer .actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    
+    .input-display {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+  
+    }
+
+
+    .input-display input {
+      padding: 10px;
+      border: solid 4px #6c6c6c;
+    width: 438px;
+    border-radius: 8px;
+    border-width:  2.5px;
+    box-sizing: border-box;
+    color: #050505;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;  
+    outline: none;
+    overflow: visible;
+    padding: 13px 19px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    }
+    
+    .input-display input.peek-output {
+      padding: 10px;
+      border: solid 8px #0f054c;
+    width: 438px;
+    border-radius: 8px;
+    border-width:  2.5px;
+    box-sizing: border-box;
+    color: #ffffff; 
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;  
+    outline: none;
+    overflow: visible;
+    padding: 13px 19px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    }
+    
+    .input-display-2 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+      z-index: 1;
+     position: relative;
+     color: #ffffff; 
+
+        
+    }
+    
+    .input-display-2 input{
+      padding: 10px;
+      margin-right: -145px;
+      margin-top: -25px;
+      font-size: 16px;
+      width: 166px;
+      outline: none;
+      text-align: center;
+      border-radius: 100px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      border: 2px solid #0f054c;
+      color: #ffffff; 
+
+    }
+
+    .input-display-2 input.peek-output {
+      color: #ffffff; 
+      cursor: default;
+      transition: background-color 0.3s;
+      border-width: 0 0 4px;
+      background-color: #1701a2;
+    }
+
+    .input-display-2::placeholder {
+  color: rgb(255, 255, 255); /* Change this to your desired color */
+  font-style: italic; /* Optional: Add styling */
+  opacity: 1; /* Ensure the color is fully visible */
+  margin-top: 20px;
+}
+
+.node:hover {
+    transform: translateY(-5px);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+    .peek-output.highlight {
+      background-color: yellow !important;
+    }
+
+    /* Toast Message Styles */
+    #toast {
+      position: fixed;
+      top: 95px;
+      right: 34px;
+      background-color: #007bff;
+      color: white;
+      padding: 10px 30px;
+      padding-right: 15px;
+      border-radius: 5px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s, visibility 0.6s;
+      z-index: 9999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #toast.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    #toast .close-btn {
+      background: none;
+
+      border: none;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+
+
+    .toast .fa-exclamation-triangle {
+      font-size: 15px; /* Adjust size of the icon */
+      padding: 10px;
+      margin-right: -10px;
+      margin-left: 10px;
+      text-shadow: 1px 0px 1px #000000;
+    }
+
+    .toast-body {
+      display: flex;
+      align-items: center; /* Vertically align icon and text */
+    }
+
+
+    #peek-output.highlight {
+  background-color: yellow;
+  transition: background-color 0.3s ease-out;
+}
+
+#peek-output::placeholder {
+  color: #ffffff; /* White placeholder */
+  font-style: italic; /* Optional styling */
+  opacity: 1;
+}
+
+    @keyframes fadeOut {
+      0% {
+        background-color: yellow;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes fadeIn {
+      0% {
+        background-color: yellow;
+      }
+      100% {
+        background-color: #1701a2;
+    }
+  }
+
+    .node.fade-in {
+    animation: fadeIn 1s ease-out;
+  
+    }
+
+    @keyframes fadeInHighlight {
+0% {
+        background-color: yellow;
+      }
+      100% {
+        background-color: #1701a2;
+      }
+  }
+
+
+.node.peeked {
+    animation: fadeInHighlight 2s ease-out forwards;
+  }
+
+  /* Highlight the input for peeked result */
+  .peek-output.highlight {
+    background-color: yellow !important;
+    transition: background-color 0.3s ease-out;
+  }
+
+  peekOutput.value {
+    align-content: center;
+  }
+    button.highlight {
+  background-color: yellow !important;
+  transition: background-color 0.3s ease-out;
+}
+  /* Style for the NULL node */
+  .node.end-node .value {
+    color: white;
+    font-style: italic;
+  }
+
+  .node.end-node {
+    background-color: #000000;
+    border-color: #727272;
+  }
+
+
+    @keyframes highlight {
+      0% {
+        background-color: yellow;
+      }
+      100% {
+        background-color: #4CAF50;
+      }
+    }
+
+    @keyframes newNodeHighlight {
+      0% {
+        background-color: yellow;
+      }
+      100% {
+        background-color: #4CAF50;
+      }
+    }
+
+/* Fading out the individual node */
+.node.fade-out {
+  animation: fadeOutNode 1s ease-out;
+}
+
+@keyframes fadeOutNode {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOutList {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Info icon styles */
+.info-icon {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: yellow;
+  text-shadow: 1px 2px 4px #000000;
+  border-width: 4px;
+  color: black;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.info-icon:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 25px;
+  left: -100px;
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;  
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.info-icon-2 {
+  position: relative;
+  top: -30px;
+  right: 25px;
+  background-color: yellow;
+  text-shadow: 1px 2px 4px #000000;
+  border-width: 4px;
+  color: black;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.info-icon-2:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 25px;
+  left: -100px;
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;  
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+
+
+.bubble-v2 {
+  position: relative;
+  top: 115px;
+  left: 18px;
+  background-color: #1a7de6;
+  border-width: 4px;  
+  color: rgb(255, 255, 255);
+  font-size: 7px;
+  width: 137px;
+  font-weight: 600;
+  border-radius: 70%;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 3px 12px rgba(5, 66, 163, 0.511);
+  z-index: 9999;
+}
+
+
+
+.button-container {
+  position: relative;
+  display: inline-block;
+}
+
+
+
+
+.bubble {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: rgba(144, 178, 255, 0.448);
+  border-width: 4px;  
+  color: rgb(255, 255, 255);
+  font-size: 7px;
+  width: 12px;
+  font-weight: 600;
+  border-radius: 70%;
+  height: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 3px 12px rgba(5, 66, 163, 0.511);
+}
+
+
+.bubble-v2 {
+  position: relative;
+  top: -5px;
+  left: -15px;
+  background-color: #1701a2;
+  border-width: 4px;  
+  color: rgb(255, 255, 255);
+  font-size: 7px;
+  width: 137px;
+  font-weight: 600;
+  border-radius: 70%;
+  height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 3px 12px rgba(5, 66, 163, 0.511);
+  z-index: -999;
+}
+
+
+
+/* Ribbon background style */
+.ribbon-title {
+    position: relative;
+    display: inline-block;
+    padding: 10px 30px;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: red; /* Red background for the ribbon */
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    border-top: 4px solid gold;  /* Gold line at the top */
+    border-bottom: 4px solid gold; /* Gold line at the bottom */
+}
+
+/* Create the ribbon effect */
+.ribbon-title::before,
+.ribbon-title::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.ribbon-title::before {
+    left: -20px;
+    border-width: 15px 20px 15px 0;
+    border-color: transparent rgb(172, 1, 1) transparent transparent;
+}
+.ribbon-title::before {
+    left: -20px;
+    top: 10px;
+    border-width: 15px 20px 15px 0;
+    border-color: transparent rgb(172, 1, 1) transparent transparent;
+}
+
+.ribbon-title::after {
+    right: -20px;
+    top: 10px;
+    border-width: 15px 0 15px 20px;
+    border-color: transparent transparent transparent rgb(172, 1, 1);
+}
+
+.button-container .Enqueue, .Dequeue, .Peek, .isEmpty, .getSize {
+    appearance: button;
+    background-color: #06509f;
+    text-shadow: -2px 1px 5px #000000;
+    border: solid transparent;
+    border-radius: 8px;
+    border-width: 0 0 6px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin: 0px;
+    outline: none;
+    overflow: visible;
+    padding: 13px 19px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.button-container .Enqueue:hover, .Dequeue:hover, .Peek:hover, .isEmpty:hover, .getSize:hover {
+  background: #003366; /* Slightly lighter blue on hover */
+  transform: scale(1.05); /* Hover effect */
+}
+
+.button-container .Enqueue:active, .Dequeue:active, .Peek:active, .isEmpty:active, .getSize:active {
+  transform: scale(0.98); /* Click effect */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+  margin-top: 80px;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  line-height: 1.1;
+  color: #161166;
+}
+
+h1, .h1 {
+  font-size: calc(1.3625rem + 1.35vw);
+}
+@media (min-width: 1200px) {
+  h1, .h1 {
+    font-size: 2.375rem;
+  }
+}
+
+h2, .h2 {
+  font-size: calc(1.325rem + 0.9vw);
+}
+@media (min-width: 1200px) {
+  h2, .h2 {
+    font-size: 2rem;
+  }
+}
+
+h3, .h3 {
+  font-size: calc(1.2875rem + 0.45vw);
+}
+@media (min-width: 1200px) {
+  h3, .h3 {
+    font-size: 1.625rem;
+  }
+}
+
+h4, .h4 {
+  font-size: calc(1.2625rem + 0.15vw);
+}
+@media (min-width: 1200px) {
+  h4, .h4 {
+    font-size: 1.375rem;
+  }
+}
+
+h5, .h5 {
+  font-size: 1.125rem;
+}
+
+.text-start {
+  text-align: left !important;
+}
+
+.text-end {
+  text-align: right !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+h6, .h6 {
+  font-size: 0.9375rem;
+}
+
+  </style>
+</head>
+<body class="sub_page">
+  <div class="hero_area">
+   
+  
+  </div>
+
+  <div class="linked-list-visualizer">
+
+
+
+    <h1>Queues Visualization</h1>
+    
+
+
+    <div class="input-display">
+      <input type="text" id="new-node-value" placeholder="Enter a value to Enqueue" />
+    
+      <div class="button-container">
+        <button onclick="enqueueNode()" class="Enqueue">Enqueue</button>
+        <span class="bubble"></span>
+        <span class="info-icon" data-tooltip="Add new first node to the queue."><i>?</i></span>
+      </div>
+      <div class="button-container">
+        <button onclick="dequeueNode()" class="Dequeue">Dequeue</button>
+        <span class="bubble"></span>
+        <span class="info-icon" data-tooltip="Remove the last node from the queue."><i>?</i></span>
+      </div>
+      <div class="button-container">
+        <button onclick="peekNode()" class="Peek">Peek</button>
+        <span class="bubble"></span>
+        <span class="info-icon" data-tooltip="Displays the first node of the queues without removing it."><i>?</i></span>
+      </div>
+      <div class="button-container">
+        <button onclick="isEmpty()" class="isEmpty">Is Empty?</button>
+        <span class="bubble"></span>
+        <span class="info-icon" data-tooltip="Check if the queue is empty."><i>?</i></span>
+      </div>
+      <div class="button-container">
+        <button onclick="getSize()" class="getSize">Size</button>
+        <span class="bubble"></span>
+        <span class="info-icon" data-tooltip="Shows and count the current size of the queues."><i>?</i></span>
+      </div>
+    </div>
+    
+    
+    <div class="list-container node-container" id="list-container"></div>
+    
+    <div class="input-display-2">
+      
+      <input type="text" id="peek-output" class="peek-output" placeholder="Output" readonly />
+      <span class="bubble-v2"></span>
+      <span class="info-icon-2" data-tooltip="Shows the outputs of the performed functions"><i>?</i></span>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">
+    <span id="toast-message"></span>
+    <button type="button" class="close-btn ml-4 mr-2 py-1" data-dismiss="toast" aria-label="Close" style="border: none; background: none;">
+        <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <script>
+
+    
+
+
+    let list = [10, 20, 30];
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+
+       const exclamationIcon = '<i class="fas fa-exclamation-circle" style="font-size: 15px; padding-right: 15px; color: white;"></i>';
+  
+  toastMessage.innerHTML = exclamationIcon + message; 
+
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    function closeToast() {
+      const toast = document.getElementById('toast');
+      toast.classList.remove('show');
+    }
+
+    function renderList() {
+  const listContainer = document.getElementById('list-container');
+  listContainer.innerHTML = ''; // Clear previous list content
+
+  // Create the head node
+  const headNode = document.createElement('div');
+  headNode.className = 'node head-node';
+  headNode.innerHTML = `<span class="value">REAR</span>`;
+
+  // Create the arrow for the head node
+  const headArrow = document.createElement('span');
+  headArrow.className = 'arrow';
+  headArrow.innerHTML = '→';
+
+  headNode.appendChild(headArrow); // Attach the arrow to the head node
+  listContainer.appendChild(headNode); // Add the head node to the container
+
+  // Create and append the other nodes
+  list.forEach((value, index) => {
+    const node = document.createElement('div');
+    node.className = 'node';
+    node.innerHTML = `<span class="value">${value}</span>${index < list.length - 1 ? '<span class="arrow">→</span>' : ''}`;
+    listContainer.appendChild(node);
+  });
+
+  // Create and append the NULL (end) node
+  const endNode = document.createElement('div');
+  endNode.className = 'node end-node';
+  endNode.innerHTML = `<span class="value">FRONT</span>`;
+
+  const nullArrow = document.createElement('span');
+  nullArrow.className = 'arrow-null';
+  nullArrow.innerHTML = '→';
+
+  endNode.appendChild(nullArrow);
+  listContainer.appendChild(endNode);
+}
+
+
+function enqueueNode() {
+  const newNodeValue = document.getElementById('new-node-value').value;
+  const parsedValue = parseInt(newNodeValue);
+
+  if (newNodeValue && parsedValue >= 1 && parsedValue <= 100) {
+    if (list.length < 9) {
+      list.unshift(parsedValue); // Add new node to the list
+      document.getElementById('new-node-value').value = '';
+
+      renderList();
+
+      // Highlight the new node (second node in the list after the head node)
+      const listContainer = document.getElementById('list-container');
+      const newNode = listContainer.querySelectorAll('.node')[1]; // Second node
+      newNode.classList.add('new-node-highlight');
+
+      // Delay before showing and highlighting output in Result/Output
+      setTimeout(() => {
+        newNode.classList.remove('new-node-highlight');
+        const peekOutput = document.getElementById('peek-output');
+        peekOutput.value = `Enqueued: ${parsedValue}`;
+        peekOutput.classList.add('highlight');
+        setTimeout(() => peekOutput.classList.remove('highlight'), 1000);
+      }, 1000); // 1 second delay
+    } else {
+      showToast('Maximum queues reached');
+    }
+  } else {
+    showToast('Enter a 0-100 to enqueue');
+  }
+}
+
+function dequeueNode() {
+  if (list.length > 0) {
+    const dequeuedNode = list.pop(); // Remove the last node
+
+    const listContainer = document.getElementById('list-container');
+    const lastNode = listContainer.querySelectorAll('.node')[list.length + 1]; // Last actual node
+
+    // Highlight and fade out the last actual node
+    lastNode.classList.add('highlight');
+    setTimeout(() => {
+      lastNode.classList.add('fade-out');
+      setTimeout(() => {
+        renderList();
+        const peekOutput = document.getElementById('peek-output');
+        peekOutput.value = `Dequeued: ${dequeuedNode}`;
+        peekOutput.classList.add('highlight');
+        setTimeout(() => peekOutput.classList.remove('highlight'), 1000);
+      }, 1000);
+    }, 1000);
+  } else {
+    showToast('Queues is empty');
+  }
+}
+
+    // Peek the first element in the queue
+    function peekNode() {
+  if (list.length > 0) {
+    // Get the last node in the list (excluding the head node)
+    const peekedNodeValue = list[list.length - 1];
+    const listContainer = document.getElementById('list-container');
+    const nodes = listContainer.querySelectorAll('.node');
+    const lastNode = nodes[nodes.length - 2]; // Last node in the list
+
+    // Highlight the peeked node
+    lastNode.classList.add('peeked');
+
+    // Delay before updating the output and removing the highlight
+    setTimeout(() => {
+      lastNode.classList.remove('peeked');
+      const peekOutput = document.getElementById('peek-output');
+      peekOutput.value = `Front: ${peekedNodeValue}`;
+      peekOutput.classList.add('highlight');
+      setTimeout(() => peekOutput.classList.remove('highlight'), 1000); // Remove highlight after 1 second
+    }, 1000); // 1 second delay to show the highlight on the node
+  } else {
+    showToast('Queue is empty');
+  }
+}
+
+
+
+function isEmpty() {
+  const listContainer = document.getElementById('list-container');
+  const allNodes = listContainer.querySelectorAll('.node'); // Get all list nodes
+  const peekOutput = document.getElementById('peek-output');
+
+  // Step 1: Highlight all the nodes first, excluding the first, last, and NULL node
+  allNodes.forEach((node, index) => {
+    if (!node.classList.contains('end-node') && index !== 0 && index !== allNodes.length - 1) {  // Exclude the first, last, and NULL nodes
+      node.classList.add('highlight'); // Add highlight to all nodes except excluded ones
+    }
+  });
+
+  // Step 2: Delay for the node highlight to be visible
+  setTimeout(() => {
+    // Step 3: Now display the result in the output field
+    if (list.length === 0) {
+      peekOutput.value = "Queue is empty";
+      showToast("Queue is empty");
+    } else {
+      peekOutput.value = "Queue is not empty";
+    }
+
+    // Step 4: Apply yellow highlight animation to the output
+    peekOutput.classList.add('highlight');
+
+    // Step 5: Remove the node highlights and output highlight after 1 second
+    setTimeout(() => {
+      allNodes.forEach(node => node.classList.remove('highlight')); // Remove highlight from all nodes
+      peekOutput.classList.remove('highlight'); // Remove highlight from output field
+    }, 1000); // Remove highlight after 1 second
+  }, 1000); // 1 second delay before showing the result in the output
+}
+
+
+
+function getSize() {
+  const nodes = document.querySelectorAll('.node:not(.end-node)');
+  const peekOutput = document.getElementById('peek-output');
+  let index = 1; // Start from the second node to skip the first node
+
+  function highlightNextNode() {
+    if (index < nodes.length - 0) { // Stop before the last node
+      nodes[index].classList.add('highlight');
+      setTimeout(() => {
+        nodes[index].classList.remove('highlight');
+        index++;
+        highlightNextNode();
+      }, 300);
+    } else {
+      peekOutput.value = "Size of list is " + (list.length - 0); // Adjust size to exclude first and last node
+      peekOutput.classList.add('highlight');
+      setTimeout(() => peekOutput.classList.remove('highlight'), 1000);
+    }
+  }
+
+  if (nodes.length > 0) {
+    highlightNextNode();
+  } else {
+    peekOutput.value = "Size of list is 0";
+    peekOutput.classList.add('highlight');
+    setTimeout(() => peekOutput.classList.remove('highlight'), 1000);
+  }
+}
+
+
+
+    renderList();
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", async function () {
+        // Initialize Driver.js
+        const driver = new Driver({
+            showProgress: true,   // Show step progress
+            allowClose: false,    // Prevent users from closing early
+            overlayOpacity: 0.3,  // Dim background
+            doneBtnText: "Finish",
+            nextBtnText: "Next",
+            prevBtnText: "Previous",
+            closeBtnText: "Close",
+
+        });
+    
+        // Define tour steps
+        const steps = [
+    {
+      element: ".list-container",
+      popover: {
+        title: "Queues Visualization",
+        description: "This is the container where the queue operations and visualizations happen.",
+        position: "top"
+      }
+    },
+    {
+      element: "#new-node-value",
+      popover: {
+        title: "Input Field",
+        description: "Enter the value you want to enqueue here.",
+        position: "top"
+      }
+    },
+    {
+      element: ".Enqueue",
+      popover: {
+        title: "Enqueue",
+        description: "Click to add a new node to the end of the queue.",
+        position: "top"
+      }
+    },
+    {
+      element: ".Dequeue",
+      popover: {
+        title: "Dequeue",
+        description: "Click to remove the front node from the queue.",
+        position: "top"
+      }
+    },
+    {
+      element: ".Peek",
+      popover: {
+        title: "Peek",
+        description: "Displays the front node of the queue without removing it.",
+        position: "top"
+      }
+    },
+    {
+      element: ".isEmpty",
+      popover: {
+        title: "IsEmpty",
+        description: "Checks if the queue is empty.",
+        position: "top"
+      }
+    },
+    {
+      element: ".getSize",
+      popover: {
+        title: "Size",
+        description: "Shows the current size of the queue.",
+        position: "top"
+      }
+    },
+    {
+      element: "#list-container",
+      popover: {
+        title: "List Container",
+        description: "This displays the current nodes in the queue.",
+        position: "top"
+      }
+    },
+    {
+      element: "#peek-output",
+      popover: {
+        title: "Output Display",
+        description: "Shows the result of the performed operations.",
+        position: "top"
+      }
+    }
+  ];
+
+        // Start the tour asynchronously after a delay
+        await new Promise(resolve => setTimeout(resolve, 1000)); // 1-second delay
+        driver.defineSteps(steps);
+        driver.start();
+    });
+
+  </script>
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script type="text/javascript" src="js/custom.js"></script>
+</html>
