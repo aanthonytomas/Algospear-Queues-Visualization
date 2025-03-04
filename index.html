@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <link rel="shortcut icon" href="images/favicon_solid.png" type="image/png">
-  <title> AlgoSpear </title>
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/favicon_solid.png" type="png">
+
+  <title> AlgoSpear</title>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet" />
@@ -15,154 +20,114 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@0.9.8/dist/driver.min.css">
   <script src="https://cdn.jsdelivr.net/npm/driver.js@0.9.8/dist/driver.min.js"></script>
   
-
   <style>
+
     
-
-    .linked-list-visualizer {
-        text-align: center;
-        margin-top: 40px;
-        padding: 20px;
-        background-color: #ffffff;
-        font-family: Arial, sans-serif;
-
+    /* Specific styles for Sorting Algorithm Visualization */
+    .sorting-visualization-body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      
+      background-color: #ffffff;
+      margin-top: 50px; /* Ensure it does not conflict with other page content */
     }
 
-    
-    .linked-list-visualizer h2 {
-        margin-top: 1px;
-        margin-bottom: 30px;
+    .sorting-visualization-body h2 {
+      margin-top: 1px;
+        margin-bottom: -120px;
         color: #ffffff;
         font-weight: 800;
-        text-shadow: 2px 1px 4px #000000;
-        
+    }
 
-    }
-    .input-container {
-      margin-bottom: 20px;
-    }
-    .list-container {
+    .sorting-visualization-body #array-container {
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: row;
-      text-align: center;
-      padding: 25px;
-      position: relative;
-      margin: auto;
-      height: 200px;
+      align-items: flex-end;
       text-shadow: 2px 3px 5px #053107;
+      text-align: center;
+      font-size: 20px;
+      margin-top: 5px;
+      height: 330px;
+      width: 945px;
       border: 2px solid #1701a2;
-      border-radius: 10px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-      width: 969px;
-      border-width: 4px;
-      line-height: 20px;
       text-shadow: -2px 4px 5px #000000;
-      
-      /** background image **/
+      border-width: 4px;
+      border-radius: 10px;
+      background-color: #f4f1fe;
+      padding: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       --color: #E1E1E1;
   background-color: #F3F3F3;
   background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent),
       linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent);
   background-size: 55px 55px;
+      
     }
 
-    .node {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 75px;
-      height: 75px;
+    .sorting-visualization-body .array-bar {
       background-color: #4CAF50;
-      border: 3px solid #046e07;
+      margin: 0 4px;
+
+      display: inline-block;
+      transform-origin: top;
+      border: 2px solid #2e7d32;
+      border-width: 3px;
+      text-shadow: 1px 3px 3px #031f04;
       color: white;
       font-weight: bold;
       border-radius: 100%;
-      margin: 0 10px;
-      position: relative;
-      transition: background-color 0.3s;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      position: relative; /* Added to position the value inside the bar */
     }
 
+    .array-bar {
+      padding-bottom: 30px;
+    }
+
+    .sorting-visualization-body .controls-1 {
     
-
-    .node .arrow {
-  position: absolute;
-  right: -23px; /* Adjust this value for arrow spacing */
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 24px;
-  color: #333;
-}   
-    .node.head-node {
-      background-color: red; /* Orange color for the head node */
-      border-color: gold;
-      font-weight: bold;
-      color: white;
-    }
-
-
-    .node.highlight {
-      background-color: yellow !important;
-      animation: highlight 1s ease-out;
-    }
-    .node.fade-out {
-      animation: fadeOut 0s ease-out;
-    }
-    .node.new-node-highlight {
-      background-color: yellow !important;
-      animation: newNodeHighlight 1s ease;
-      transition-timing-function: cubic-bezier(0.25, 0.5, 0.25, 0.75);
-
-    }
-    .node .value {
-      font-size: 20px;
-    }
-    .arrow-null {
-  position: absolute;
-  left: 5px;
-  top: 50%;
-  transform: translateX(-128%) translateY(-50%);
-  font-size: 24px;
-  color: #333;
-}
-
-    .end-node .value {
-      color: #555;
-      font-style: italic;
-    }
-    .linked-list-visualizer .actions {
       display: flex;
-      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 0px;
+    }
+
+    .sorting-visualization-body .controls {
+      
+      display: flex;
+      flex-wrap: wrap;
       gap: 10px;
       margin-top: 20px;
     }
-
     
-    .input-display {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 15px;
-  
-    }
+
+    /* Highlight the bar being moved/swapped */
+.highlight {
+  background-color: yellow !important; /* Highlight color */
+  transition: background-color 0.5s ease;  /* Smooth transition */
+}
 
 
-    .input-display input {
-      padding: 10px;
-      border: solid 4px #6c6c6c;
-    width: 438px;
+button {
+    appearance: button;
+    background-color: #06509f;
+    text-shadow: 1px 0px 5px #00000069;    
+    border: solid transparent;
     border-radius: 8px;
-    border-width:  2.5px;
+    border-width: 0 0 6px;
     box-sizing: border-box;
-    color: #050505;
+    color: #FFFFFF;
     cursor: pointer;
     display: inline-block;
     font-size: 14.5px;
     font-weight: 700;
     letter-spacing: .8px;
-    line-height: 20px;  
+    line-height: 20px;
+    margin: 0px;
     outline: none;
     overflow: visible;
     padding: 13px 19px;
@@ -175,22 +140,28 @@
     -webkit-user-select: none;
     vertical-align: middle;
     white-space: nowrap;
-    }
-    
-    .input-display input.peek-output {
-      padding: 10px;
-      border: solid 8px #0f054c;
-    width: 438px;
+    z-index: 1;
+}
+
+
+
+.controls button{
+    appearance: button;
+    background-color: #06509f;
+    text-shadow: -2px 1px 5px #000000;
+    border: solid transparent;
     border-radius: 8px;
-    border-width:  2.5px;
+    border-width: 0 0 6px;
     box-sizing: border-box;
-    color: #ffffff; 
+    color: #FFFFFF;
     cursor: pointer;
     display: inline-block;
     font-size: 14.5px;
     font-weight: 700;
     letter-spacing: .8px;
-    line-height: 20px;  
+    line-height: 20px;
+    margin: 0px;
+    margin-right: -51px;
     outline: none;
     overflow: visible;
     padding: 13px 19px;
@@ -203,65 +174,210 @@
     -webkit-user-select: none;
     vertical-align: middle;
     white-space: nowrap;
-    }
-    
-    .input-display-2 {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 15px;
-      z-index: 1;
-     position: relative;
-     color: #ffffff; 
-
-        
-    }
-    
-    .input-display-2 input{
-      padding: 10px;
-      margin-right: -145px;
-      margin-top: -25px;
-      font-size: 16px;
-      width: 166px;
-      outline: none;
-      text-align: center;
-      border-radius: 100px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      border: 2px solid #0f054c;
-      color: #ffffff; 
-
-    }
-
-    .input-display-2 input.peek-output {
-      color: #ffffff; 
-      cursor: default;
-      transition: background-color 0.3s;
-      border-width: 0 0 4px;
-      background-color: #1701a2;
-    }
-
-    .input-display-2::placeholder {
-  color: rgb(255, 255, 255); /* Change this to your desired color */
-  font-style: italic; /* Optional: Add styling */
-  opacity: 1; /* Ensure the color is fully visible */
-  margin-top: 20px;
+    z-index: 1;
 }
 
-.node:hover {
-    transform: translateY(-5px);
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+.controls button:hover:not(:disabled) {
+    filter: brightness(1.1);
 }
 
-    .peek-output.highlight {
-      background-color: yellow !important;
-    }
+.controls button:active {
+    padding-bottom: 10px;
+}
 
-    /* Toast Message Styles */
-    #toast {
+/* Buttons inside Controls Section */
+.controls button {
+    appearance: button;
+    background-color: #06509f;
+    text-shadow: -2px 1px 5px #000000;
+    border: solid transparent;
+    border-radius: 8px;
+    border-width: 0 0 6px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin: 0px;
+    margin-right: -51px;
+    outline: none;
+    overflow: visible;
+    padding: 13px 19px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.controls button:hover {
+  background: #003366; /* Slightly lighter blue on hover */
+  transform: scale(1.05); /* Hover effect */
+}
+
+.controls button:active {
+  transform: scale(0.98); /* Click effect */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+    .bubble {
+  position: relative;
+  top: 5px;
+  left: -146px;
+  background-color: rgba(144, 178, 255, 0.448);
+  border-width: 4px;  
+  color: rgb(255, 255, 255);
+  font-size: 7px;
+  width: 12px;
+  font-weight: 600;
+  border-radius: 70%;
+  height: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 3px 12px rgba(5, 66, 163, 0.511);
+  z-index: 9999;
+}
+    .bubble-2 {
+  position: relative;
+  top: 5px;
+  left: -222px;
+  background-color: rgba(144, 178, 255, 0.448);
+  border-width: 4px;  
+  color: rgb(255, 255, 255);
+  font-size: 7px;
+  width: 12px;
+  font-weight: 600;
+  border-radius: 70%;
+  height: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 3px 12px rgba(5, 66, 163, 0.511);
+  z-index: 9999;
+}
+.bubble-3 {
+  position: relative;
+  top: 5px;
+  left: -106px;
+  background-color: rgba(144, 178, 255, 0.448);
+  border-width: 4px;  
+  color: rgb(255, 255, 255);
+  font-size: 7px;
+  width: 12px;
+  font-weight: 600;
+  border-radius: 70%;
+  height: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 3px 12px rgba(5, 66, 163, 0.511);
+  z-index: 9999;
+}
+.bubble-4 {
+  position: relative;
+  top: 5px;
+  left: -130px;
+  background-color: rgba(144, 178, 255, 0.448);
+  border-width: 4px;  
+  color: rgb(255, 255, 255);
+  font-size: 7px;
+  width: 12px;
+  font-weight: 600;
+  border-radius: 70%;
+  height: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 3px 12px rgba(5, 66, 163, 0.511);
+  z-index: 9999;
+}
+.bubble-5 {
+  position: relative;
+  top: 5px;
+  left: -127px;
+  background-color: rgba(144, 178, 255, 0.448);
+  border-width: 4px;  
+  color: rgb(255, 255, 255);
+  font-size: 7px;
+  width: 12px;
+  font-weight: 600;
+  border-radius: 70%;
+  height: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 3px 12px rgba(5, 66, 163, 0.511);
+  z-index: 9999;
+}
+.bubble-6 {
+  position: relative;
+  top: 5px;
+  left: -98px;
+  background-color: rgba(144, 178, 255, 0.448);
+  border-width: 4px;  
+  color: rgb(255, 255, 255);
+  font-size: 7px;
+  width: 12px;
+  font-weight: 600;
+  border-radius: 70%;
+  height: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 3px 12px rgba(5, 66, 163, 0.511);
+  z-index: 9999;
+}
+.bubble-7 {
+  position: relative;
+  top: 5px;
+  left: -91px;
+  background-color: rgba(144, 178, 255, 0.448);
+  border-width: 4px;  
+  color: rgb(255, 255, 255);
+  font-size: 7px;
+  width: 12px;
+  font-weight: 600;
+  border-radius: 70%;
+  height: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 3px 12px rgba(5, 66, 163, 0.511);
+  z-index: 9999;
+}
+.bubble-8 {
+  position: relative;
+  top: 5px;
+  left: -85px;
+  background-color: rgba(144, 178, 255, 0.448);
+  border-width: 4px;  
+  color: rgb(255, 255, 255);
+  font-size: 7px;
+  width: 12px;
+  font-weight: 600;
+  border-radius: 70%;
+  height: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 3px 12px rgba(5, 66, 163, 0.511);
+  z-index: 9999;
+}
+
+#toast {
       position: fixed;
       top: 95px;
       right: 34px;
+      text-shadow: 1px 0px 5px #00000069;
       background-color: #007bff;
       color: white;
       padding: 10px 30px;
@@ -274,6 +390,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      max-width: 350px;
+      max-height: 55px;
     }
     #toast.show {
       opacity: 1;
@@ -304,125 +422,50 @@
     }
 
 
-    #peek-output.highlight {
-  background-color: yellow;
-  transition: background-color 0.3s ease-out;
-}
-
-#peek-output::placeholder {
-  color: #ffffff; /* White placeholder */
-  font-style: italic; /* Optional styling */
-  opacity: 1;
-}
-
-    @keyframes fadeOut {
-      0% {
-        background-color: yellow;
-      }
-      100% {
-        opacity: 0;
-      }
+    .sorting-visualization-body button:hover {
+      background-color: #0056b3;
     }
 
-    @keyframes fadeIn {
-      0% {
-        background-color: yellow;
-      }
-      100% {
-        background-color: #1701a2;
-    }
-  }
-
-    .node.fade-in {
-    animation: fadeIn 1s ease-out;
-  
+    .sorting-visualization-body button:disabled {
+      background-color: #0056b3;
+      cursor: not-allowed;
     }
 
-    @keyframes fadeInHighlight {
-0% {
-        background-color: yellow;
-      }
-      100% {
-        background-color: #1701a2;
-      }
-  }
+    .sorting-visualization-body #array-input {
+      padding: 10px;
+      border: solid 4px #6c6c6c;
+      margin-left: -30px;
+    width: 485px;
+    border-radius: 8px;
+    border-width:  2.5px;
+    box-sizing: border-box;
+    color: #050505;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14.5px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;  
+    outline: none;
+    overflow: visible;
+    padding: 13px 19px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
 
-
-.node.peeked {
-    animation: fadeInHighlight 2s ease-out forwards;
-  }
-
-  /* Highlight the input for peeked result */
-  .peek-output.highlight {
-    background-color: yellow !important;
-    transition: background-color 0.3s ease-out;
-  }
-
-  peekOutput.value {
-    align-content: center;
-  }
-    button.highlight {
-  background-color: yellow !important;
-  transition: background-color 0.3s ease-out;
-}
-  /* Style for the NULL node */
-  .node.end-node .value {
-    color: white;
-    font-style: italic;
-  }
-
-  .node.end-node {
-    background-color: #000000;
-    border-color: #727272;
-  }
-
-
-    @keyframes highlight {
-      0% {
-        background-color: yellow;
-      }
-      100% {
-        background-color: #4CAF50;
-      }
     }
 
-    @keyframes newNodeHighlight {
-      0% {
-        background-color: yellow;
-      }
-      100% {
-        background-color: #4CAF50;
-      }
-    }
-
-/* Fading out the individual node */
-.node.fade-out {
-  animation: fadeOutNode 1s ease-out;
-}
-
-@keyframes fadeOutNode {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes fadeOutList {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-/* Info icon styles */
+    /* Info icon styles */
 .info-icon {
-  position: absolute;
+  position: relative;
   top: -5px;
-  right: -5px;
+  right: -282px;
   background-color: yellow;
   text-shadow: 1px 2px 4px #000000;
   border-width: 4px;
@@ -437,6 +480,7 @@
   justify-content: center;
   cursor: pointer;
   box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+  z-index:9999;
 }
 
 .info-icon:hover::after {
@@ -453,11 +497,10 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   z-index: 10;
 }
-
 .info-icon-2 {
   position: relative;
-  top: -30px;
-  right: 25px;
+  top: -56px;
+  right: -200px;
   background-color: yellow;
   text-shadow: 1px 2px 4px #000000;
   border-width: 4px;
@@ -472,9 +515,217 @@
   justify-content: center;
   cursor: pointer;
   box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
 }
 
 .info-icon-2:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 25px;
+  left: -100px;
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;  
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}.info-icon-3 {
+  position: relative;
+  top: -5px;
+  right: -5px;
+  background-color: yellow;
+  text-shadow: 1px 2px 4px #000000;
+  border-width: 4px;
+  color: black;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+}
+
+
+
+.info-icon-3:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 25px;
+  left: -100px;
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;  
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}.info-icon-4 {
+  position: relative;
+  top: -5px;
+  right: -5px;
+  background-color: yellow;
+  text-shadow: 1px 2px 4px #000000;
+  border-width: 4px;
+  color: black;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+}
+
+.info-icon-4:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 25px;
+  left: -100px;
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;  
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}.info-icon-5 {
+  position: relative;
+  top: -5px;
+  right: -5px;
+  background-color: yellow;
+  text-shadow: 1px 2px 4px #000000;
+  border-width: 4px;
+  color: black;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+}
+
+.info-icon-5:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 25px;
+  left: -100px;
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;  
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}.info-icon-6 {
+  position: relative;
+  top: -5px;
+  right: -5px;
+  background-color: yellow;
+  text-shadow: 1px 2px 4px #000000;
+  border-width: 4px;
+  color: black;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+}
+
+.info-icon-6:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 25px;
+  left: -100px;
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;  
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  
+}.info-icon-7 {
+  position: relative;
+  top: -5px;
+  right: -5px;
+  background-color: yellow;
+  text-shadow: 1px 2px 4px #000000;
+  border-width: 4px;
+  color: black;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+}
+
+.info-icon-7:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 25px;
+  left: -100px;
+  background-color: black;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;  
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}.info-icon-8 {
+  position: relative;
+  top: -5px;
+  right: -5px;
+  background-color: yellow;
+  text-shadow: 1px 2px 4px #000000;
+  border-width: 4px;
+  color: black;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.3);
+  z-index: 9999;
+}
+
+.info-icon-8:hover::after {
   content: attr(data-tooltip);
   position: absolute;
   bottom: 25px;
@@ -491,76 +742,7 @@
 
 
 
-.bubble-v2 {
-  position: relative;
-  top: 115px;
-  left: 18px;
-  background-color: #1a7de6;
-  border-width: 4px;  
-  color: rgb(255, 255, 255);
-  font-size: 7px;
-  width: 137px;
-  font-weight: 600;
-  border-radius: 70%;
-  height: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 1px 3px 12px rgba(5, 66, 163, 0.511);
-  z-index: 9999;
-}
-
-
-
-.button-container {
-  position: relative;
-  display: inline-block;
-}
-
-
-
-
-.bubble {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  background-color: rgba(144, 178, 255, 0.448);
-  border-width: 4px;  
-  color: rgb(255, 255, 255);
-  font-size: 7px;
-  width: 12px;
-  font-weight: 600;
-  border-radius: 70%;
-  height: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 1px 3px 12px rgba(5, 66, 163, 0.511);
-}
-
-
-.bubble-v2 {
-  position: relative;
-  top: -5px;
-  left: -15px;
-  background-color: #1701a2;
-  border-width: 4px;  
-  color: rgb(255, 255, 255);
-  font-size: 7px;
-  width: 137px;
-  font-weight: 600;
-  border-radius: 70%;
-  height: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 1px 3px 12px rgba(5, 66, 163, 0.511);
-  z-index: -999;
-}
-
-
-
-/* Ribbon background style */
+    /* Ribbon background style */
 .ribbon-title {
     position: relative;
     display: inline-block;
@@ -605,50 +787,61 @@
     border-color: transparent transparent transparent rgb(172, 1, 1);
 }
 
-.button-container .Enqueue, .Dequeue, .Peek, .isEmpty, .getSize {
-    appearance: button;
-    background-color: #06509f;
-    text-shadow: -2px 1px 5px #000000;
-    border: solid transparent;
-    border-radius: 8px;
-    border-width: 0 0 6px;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 14.5px;
-    font-weight: 700;
-    letter-spacing: .8px;
-    line-height: 20px;
-    margin: 0px;
-    outline: none;
-    overflow: visible;
-    padding: 13px 19px;
-    text-align: center;
-    text-transform: uppercase;
-    touch-action: manipulation;
-    transform: translateZ(0);
-    transition: filter .2s;
-    user-select: none;
-    -webkit-user-select: none;
-    vertical-align: middle;
-    white-space: nowrap;
-    z-index: 1;
-}
 
-.button-container .Enqueue:hover, .Dequeue:hover, .Peek:hover, .isEmpty:hover, .getSize:hover {
-  background: #003366; /* Slightly lighter blue on hover */
-  transform: scale(1.05); /* Hover effect */
-}
 
-.button-container .Enqueue:active, .Dequeue:active, .Peek:active, .isEmpty:active, .getSize:active {
-  transform: scale(0.98); /* Click effect */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+.gradient-overlay {
+    position: fixed;
+    bottom: 0; /* Anchor to the bottom of the screen */
+    left: 0;
+    width: 100%; /* Cover the entire width */
+    height: 100px; /* Adjust height to your preference */
+    background: linear-gradient(to top, rgb(174, 174, 234), transparent); /* Black fading to transparent */
+    pointer-events: none; /* Allow interactions with elements beneath */
+    z-index: 0; /* Place it above other content */
 }
 
 
+.scroll-button {
+            position: fixed; /* Fixed position for bottom right corner */
+            bottom: 20px; /* Distance from the bottom */
+            right: 20px; /* Distance from the right */
+            width: 50px; /* Width of the button */
+            height: 50px; /* Height of the button */
+            border-radius: 50%; /* Circular shape */
+            background-color: #007bff; /* Button color */
+            color: white; /* Arrow color */
+            border: none; /* No border */
+            cursor: pointer; /* Pointer cursor */
+            display: flex; /* Flexbox to center the icon */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            font-size: 24px; /* Icon size */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            transition: background-color 0.3s; /* Transition for hover effect */
+            display: none; /* Initially hidden */
+        }
+        .scroll-button:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+
+        body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .highlight-yellow {
+    background-color: yellow !important;
+}
+
+.highlight-red {
+    background-color: red !important;
+    transition: background-color 0.3s ease-in-out;
+}
+  
 h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
-  margin-top: 80px;
+  margin-top: 10px;
   margin-bottom: 1rem;
   font-weight: 500;
   line-height: 1.1;
@@ -710,82 +903,80 @@ h5, .h5 {
 h6, .h6 {
   font-size: 0.9375rem;
 }
-
   </style>
 </head>
+
 <body class="sub_page">
+
   <div class="hero_area">
-   
-  
-  </div>
-
-  <div class="linked-list-visualizer">
-
-
-
-    <h1>Queues Visualization</h1>
-    
-
-
-    <div class="input-display">
-      <input type="text" id="new-node-value" placeholder="Enter a value to Enqueue" />
-    
-      <div class="button-container">
-        <button onclick="enqueueNode()" class="Enqueue">Enqueue</button>
-        <span class="bubble"></span>
-        <span class="info-icon" data-tooltip="Add new first node to the queue."><i>?</i></span>
-      </div>
-      <div class="button-container">
-        <button onclick="dequeueNode()" class="Dequeue">Dequeue</button>
-        <span class="bubble"></span>
-        <span class="info-icon" data-tooltip="Remove the last node from the queue."><i>?</i></span>
-      </div>
-      <div class="button-container">
-        <button onclick="peekNode()" class="Peek">Peek</button>
-        <span class="bubble"></span>
-        <span class="info-icon" data-tooltip="Displays the first node of the queues without removing it."><i>?</i></span>
-      </div>
-      <div class="button-container">
-        <button onclick="isEmpty()" class="isEmpty">Is Empty?</button>
-        <span class="bubble"></span>
-        <span class="info-icon" data-tooltip="Check if the queue is empty."><i>?</i></span>
-      </div>
-      <div class="button-container">
-        <button onclick="getSize()" class="getSize">Size</button>
-        <span class="bubble"></span>
-        <span class="info-icon" data-tooltip="Shows and count the current size of the queues."><i>?</i></span>
+    <div class="hero_bg_box">
+      <div class="bg_img_box">
+        <img src="images/hero-bg.png" alt="">
       </div>
     </div>
+
+
+  </div>
+
+  <!-- Sorting Algorithm Visualization Section -->
+  <div class="sorting-visualization-body">
+    <h1 class="text-center">Sorting Visualization</h1>
+
     
-    
-    <div class="list-container node-container" id="list-container"></div>
-    
-    <div class="input-display-2">
+    <div class="controls">
+      <input type="text" id="array-input" placeholder="Enter numbers (e.g., 5, 10, 3)" />
+      <button onclick="generateArray()" id="generateArray" sorting-buttons">Generate Arrays</button>
+      <span class="bubble"></span>
+      <span class="info-icon" data-tooltip="Generate an array with random values with 10 size."><i>?</i></span>
+      <button onclick="generateRandomArray()" id="generateRandomArray"  class="sorting-buttons">Generate Random Arrays</button>
+      <span class="bubble-2"></span>
+    </div>
+    <span class="info-icon-2" data-tooltip="Create an array with user-defined size and values."><i>?</i></span>
+
+    <div id="array-container"></div>
+
+    <div class="controls">
       
-      <input type="text" id="peek-output" class="peek-output" placeholder="Output" readonly />
-      <span class="bubble-v2"></span>
-      <span class="info-icon-2" data-tooltip="Shows the outputs of the performed functions"><i>?</i></span>
+      <button onclick="bubbleSort()" class="bubblesort">Bubble Sort</button>
+      <span class="bubble-3"></span>
+      <span class="info-icon-3" data-tooltip="Visualize pairwise comparison and swapping to sort elements."><i>?</i></span>
+      <button onclick="selectionSort()" class="selectionsort">Selection Sort</button>
+      <span class="bubble-4"></span>
+      <span class="info-icon-4" data-tooltip="Highlight smallest element selection in each sorting pass."><i>?</i></span>
+      <button onclick="insertionSort()" class="insertionsort">Insertion Sort</button>
+      <span class="bubble-5"></span>
+      <span class="info-icon-5" data-tooltip="Show gradual element insertion into a sorted subsection."><i>?</i></span>
+      <button onclick="mergeSort()" class="mergesort">Merge Sort</button>
+      <span class="bubble-6"></span>
+      <span class="info-icon-6" data-tooltip="Display divide-and-conquer sorting by merging sorted halves."><i>?</i></span>
+      <button onclick="quickSort()" class="quicksort">Quick Sort</button>
+      <span class="bubble-7"></span>
+      <span class="info-icon-7" data-tooltip="Illustrate pivot-based partitioning and recursive element sorting."><i>?</i></span>
+      <button onclick="heapSort()">Heap Sort</button>
+      <span class="bubble-8"></span>
+      <span class="info-icon-8" data-tooltip="Visualize sorting using a binary heap structure."><i>?</i></span>
     </div>
   </div>
+
+  
 
   <div id="toast" class="toast">
     <span id="toast-message"></span>
-    <button type="button" class="close-btn ml-4 mr-2 py-1" data-dismiss="toast" aria-label="Close" style="border: none; background: none;">
+    <button type="button" class="close-btn ml- mr-2 py-1" data-dismiss="toast" aria-label="Close" style="border: none; background: none;">
         <span aria-hidden="true">&times;</span>
     </button>
   </div>
 
+  <!-- Sorting Algorithm Visualization Script -->
   <script>
+    const arrayContainer = document.getElementById('array-container');
+    let array = [];
+    const delay = 500;
 
-    
-
-
-    let list = [10, 20, 30];
-
+    const toastTimeout = 2500; // Set the timeout for the toast in milliseconds
     function showToast(message) {
       const toast = document.getElementById('toast');
       const toastMessage = document.getElementById('toast-message');
-
        const exclamationIcon = '<i class="fas fa-exclamation-circle" style="font-size: 15px; padding-right: 15px; color: white;"></i>';
   
   toastMessage.innerHTML = exclamationIcon + message; 
@@ -801,197 +992,521 @@ h6, .h6 {
       toast.classList.remove('show');
     }
 
-    function renderList() {
-  const listContainer = document.getElementById('list-container');
-  listContainer.innerHTML = ''; // Clear previous list content
 
-  // Create the head node
-  const headNode = document.createElement('div');
-  headNode.className = 'node head-node';
-  headNode.innerHTML = `<span class="value">REAR</span>`;
+    function generateArray() {
+    const input = document.getElementById('array-input').value.trim();
 
-  // Create the arrow for the head node
-  const headArrow = document.createElement('span');
-  headArrow.className = 'arrow';
-  headArrow.innerHTML = '→';
+    // Validate input to allow numbers separated by spaces or commas
+    const inputArray = input.split(/[\s,]+/)
+        .map(num => parseInt(num.trim()))
+        .filter(num => !isNaN(num));
 
-  headNode.appendChild(headArrow); // Attach the arrow to the head node
-  listContainer.appendChild(headNode); // Add the head node to the container
-
-  // Create and append the other nodes
-  list.forEach((value, index) => {
-    const node = document.createElement('div');
-    node.className = 'node';
-    node.innerHTML = `<span class="value">${value}</span>${index < list.length - 1 ? '<span class="arrow">→</span>' : ''}`;
-    listContainer.appendChild(node);
-  });
-
-  // Create and append the NULL (end) node
-  const endNode = document.createElement('div');
-  endNode.className = 'node end-node';
-  endNode.innerHTML = `<span class="value">FRONT</span>`;
-
-  const nullArrow = document.createElement('span');
-  nullArrow.className = 'arrow-null';
-  nullArrow.innerHTML = '→';
-
-  endNode.appendChild(nullArrow);
-  listContainer.appendChild(endNode);
-}
-
-
-function enqueueNode() {
-  const newNodeValue = document.getElementById('new-node-value').value;
-  const parsedValue = parseInt(newNodeValue);
-
-  if (newNodeValue && parsedValue >= 1 && parsedValue <= 100) {
-    if (list.length < 9) {
-      list.unshift(parsedValue); // Add new node to the list
-      document.getElementById('new-node-value').value = '';
-
-      renderList();
-
-      // Highlight the new node (second node in the list after the head node)
-      const listContainer = document.getElementById('list-container');
-      const newNode = listContainer.querySelectorAll('.node')[1]; // Second node
-      newNode.classList.add('new-node-highlight');
-
-      // Delay before showing and highlighting output in Result/Output
-      setTimeout(() => {
-        newNode.classList.remove('new-node-highlight');
-        const peekOutput = document.getElementById('peek-output');
-        peekOutput.value = `Enqueued: ${parsedValue}`;
-        peekOutput.classList.add('highlight');
-        setTimeout(() => peekOutput.classList.remove('highlight'), 1000);
-      }, 1000); // 1 second delay
-    } else {
-      showToast('Maximum queues reached');
-    }
-  } else {
-    showToast('Enter a 0-100 to enqueue');
-  }
-}
-
-function dequeueNode() {
-  if (list.length > 0) {
-    const dequeuedNode = list.pop(); // Remove the last node
-
-    const listContainer = document.getElementById('list-container');
-    const lastNode = listContainer.querySelectorAll('.node')[list.length + 1]; // Last actual node
-
-    // Highlight and fade out the last actual node
-    lastNode.classList.add('highlight');
-    setTimeout(() => {
-      lastNode.classList.add('fade-out');
-      setTimeout(() => {
-        renderList();
-        const peekOutput = document.getElementById('peek-output');
-        peekOutput.value = `Dequeued: ${dequeuedNode}`;
-        peekOutput.classList.add('highlight');
-        setTimeout(() => peekOutput.classList.remove('highlight'), 1000);
-      }, 1000);
-    }, 1000);
-  } else {
-    showToast('Queues is empty');
-  }
-}
-
-    // Peek the first element in the queue
-    function peekNode() {
-  if (list.length > 0) {
-    // Get the last node in the list (excluding the head node)
-    const peekedNodeValue = list[list.length - 1];
-    const listContainer = document.getElementById('list-container');
-    const nodes = listContainer.querySelectorAll('.node');
-    const lastNode = nodes[nodes.length - 2]; // Last node in the list
-
-    // Highlight the peeked node
-    lastNode.classList.add('peeked');
-
-    // Delay before updating the output and removing the highlight
-    setTimeout(() => {
-      lastNode.classList.remove('peeked');
-      const peekOutput = document.getElementById('peek-output');
-      peekOutput.value = `Front: ${peekedNodeValue}`;
-      peekOutput.classList.add('highlight');
-      setTimeout(() => peekOutput.classList.remove('highlight'), 1000); // Remove highlight after 1 second
-    }, 1000); // 1 second delay to show the highlight on the node
-  } else {
-    showToast('Queue is empty');
-  }
-}
-
-
-
-function isEmpty() {
-  const listContainer = document.getElementById('list-container');
-  const allNodes = listContainer.querySelectorAll('.node'); // Get all list nodes
-  const peekOutput = document.getElementById('peek-output');
-
-  // Step 1: Highlight all the nodes first, excluding the first, last, and NULL node
-  allNodes.forEach((node, index) => {
-    if (!node.classList.contains('end-node') && index !== 0 && index !== allNodes.length - 1) {  // Exclude the first, last, and NULL nodes
-      node.classList.add('highlight'); // Add highlight to all nodes except excluded ones
-    }
-  });
-
-  // Step 2: Delay for the node highlight to be visible
-  setTimeout(() => {
-    // Step 3: Now display the result in the output field
-    if (list.length === 0) {
-      peekOutput.value = "Queue is empty";
-      showToast("Queue is empty");
-    } else {
-      peekOutput.value = "Queue is not empty";
+    if (inputArray.length === 0) {
+        showToast("Numbers split by commas or spaces."); // Show toast if input is empty
+        return;
     }
 
-    // Step 4: Apply yellow highlight animation to the output
-    peekOutput.classList.add('highlight');
-
-    // Step 5: Remove the node highlights and output highlight after 1 second
-    setTimeout(() => {
-      allNodes.forEach(node => node.classList.remove('highlight')); // Remove highlight from all nodes
-      peekOutput.classList.remove('highlight'); // Remove highlight from output field
-    }, 1000); // Remove highlight after 1 second
-  }, 1000); // 1 second delay before showing the result in the output
-}
-
-
-
-function getSize() {
-  const nodes = document.querySelectorAll('.node:not(.end-node)');
-  const peekOutput = document.getElementById('peek-output');
-  let index = 1; // Start from the second node to skip the first node
-
-  function highlightNextNode() {
-    if (index < nodes.length - 0) { // Stop before the last node
-      nodes[index].classList.add('highlight');
-      setTimeout(() => {
-        nodes[index].classList.remove('highlight');
-        index++;
-        highlightNextNode();
-      }, 300);
-    } else {
-      peekOutput.value = "Size of list is " + (list.length - 0); // Adjust size to exclude first and last node
-      peekOutput.classList.add('highlight');
-      setTimeout(() => peekOutput.classList.remove('highlight'), 1000);
+    if (inputArray.length > 10) {
+        showToast("Enter less than 10 numbers.");
+        return;
     }
-  }
 
-  if (nodes.length > 0) {
-    highlightNextNode();
-  } else {
-    peekOutput.value = "Size of list is 0";
-    peekOutput.classList.add('highlight');
-    setTimeout(() => peekOutput.classList.remove('highlight'), 1000);
-  }
+    for (let num of inputArray) {
+        if (num < 1 || num > 100) {
+            showToast("Enter numbers 1-100");
+            return;
+        }
+    }
+
+    array = inputArray;
+    renderArray();
 }
 
 
 
-    renderList();
-  </script>
-  <script>
+    function generateRandomArray() {
+        array = Array.from({ length: 10 }, () => Math.floor(Math.random() * 100) + 1);
+        renderArray();
+    }
+
+    function renderArray() {
+        arrayContainer.innerHTML = '';
+        array.forEach(value => {
+            const bar = document.createElement('div');
+            bar.classList.add('array-bar');
+            bar.style.height = `${value * 3}px`;
+            bar.style.width = '120px';
+
+            // Create a span element to display the value
+            const valueSpan = document.createElement('span');
+            valueSpan.classList.add('bar-value');
+            valueSpan.textContent = value; // Set the text to the value of the bar
+
+            bar.appendChild(valueSpan); // Append the span to the bar
+            arrayContainer.appendChild(bar);
+        });
+    }
+
+    async function bubbleSort() {
+        disableButtons();
+        for (let i = 0; i < array.length; i++) {
+            for (let j = 0; j < array.length - i - 1; j++) {
+                const bars = document.querySelectorAll('.array-bar');
+
+                // Highlight current pair being compared
+                bars[j].classList.add('highlight-yellow');
+                bars[j + 1].classList.add('highlight-yellow');
+                await pause(delay);
+
+                if (array[j] > array[j + 1]) {
+                    // Swap the values
+                    [array[j], array[j + 1]] = [array[j + 1], array[j]];
+
+                    // Render the array and get updated bars
+                    renderArray();
+                    const updatedBars = document.querySelectorAll('.array-bar');
+
+                    // Add red highlight for swapped bars
+                    updatedBars[j].classList.add('highlight-red');
+                    updatedBars[j + 1].classList.add('highlight-red');
+
+                    await pause(delay);
+
+                    // Remove red highlights after transition
+                    updatedBars[j].classList.remove('highlight-red');
+                    updatedBars[j + 1].classList.remove('highlight-red');
+                }
+
+                // Remove yellow highlights after comparison
+                bars[j].classList.remove('highlight-yellow');
+                bars[j + 1].classList.remove('highlight-yellow');
+            }
+        }
+        enableButtons();
+    }
+
+    async function selectionSort() {
+        disableButtons();
+        for (let i = 0; i < array.length - 1; i++) {
+            let minIndex = i;
+            const bars = document.querySelectorAll('.array-bar');
+
+            // Highlight the current starting element
+            bars[i].classList.add('highlight-yellow');
+            
+            for (let j = i + 1; j < array.length; j++) {
+                // Highlight current comparison element
+                bars[j].classList.add('highlight-yellow');
+                await pause(delay);
+                
+                if (array[j] < array[minIndex]) {
+                    minIndex = j;
+                }
+
+                // Remove highlight after comparison
+                bars[j].classList.remove('highlight-yellow');
+            }
+
+            if (minIndex !== i) {
+                // Swap elements
+                [array[i], array[minIndex]] = [array[minIndex], array[i]];
+                renderArray();
+
+                // Re-select bars after render
+                const updatedBars = document.querySelectorAll('.array-bar');
+                
+                // Add red highlight for swapped elements
+                updatedBars[i].classList.add('highlight-red');
+                updatedBars[minIndex].classList.add('highlight-red');
+                
+                await pause(delay);
+
+                // Remove red highlights after transition
+                updatedBars[i].classList.remove('highlight-red');
+                updatedBars[minIndex].classList.remove('highlight-red');
+            }
+
+            // Remove yellow highlight from sorted element
+            bars[i].classList.remove('highlight-yellow');
+        }
+        enableButtons();
+    }
+
+    async function insertionSort() {
+        disableButtons();
+        for (let i = 1; i < array.length; i++) {
+            let key = array[i];
+            let j = i - 1;
+            const bars = document.querySelectorAll('.array-bar');
+
+            // Highlight the key element being inserted
+            bars[i].classList.add('highlight-yellow');
+            await pause(delay);
+
+            while (j >= 0 && array[j] > key) {
+                // Shift element to the right
+                array[j + 1] = array[j];
+
+                renderArray();
+                const updatedBars = document.querySelectorAll('.array-bar');
+
+                // Highlight moved element in red
+                updatedBars[j + 1].classList.add('highlight-red');
+                await pause(delay);
+
+                // Remove red highlight after transition
+                updatedBars[j + 1].classList.remove('highlight-red');
+
+                j--;
+            }
+
+            array[j + 1] = key;
+            renderArray();
+
+            // Remove yellow highlight from the inserted element
+            const updatedBars = document.querySelectorAll('.array-bar');
+            updatedBars[j + 1].classList.remove('highlight-yellow');
+
+            await pause(delay);
+        }
+        enableButtons();
+    }
+
+    
+    async function mergeSort() {
+    disableButtons();
+    await mergeSortHelper(0, array.length - 1);
+    enableButtons();
+}
+
+async function mergeSortHelper(left, right) {
+    if (left < right) {
+        let mid = Math.floor((left + right) / 2);
+
+        await mergeSortHelper(left, mid);
+        await mergeSortHelper(mid + 1, right);
+
+        await merge(left, mid, right);
+    }
+}
+
+async function merge(left, mid, right) {
+    let leftArr = array.slice(left, mid + 1);
+    let rightArr = array.slice(mid + 1, right + 1);
+    let i = 0, j = 0, k = left;
+
+    while (i < leftArr.length && j < rightArr.length) {
+        renderArray();
+        const bars = document.querySelectorAll('.array-bar');
+
+        // Highlight all bars being compared in yellow
+        for (let x = left; x <= right; x++) {
+            bars[x].classList.add('highlight-yellow');
+        }
+        await pause(delay);
+
+        if (leftArr[i] <= rightArr[j]) {
+            array[k] = leftArr[i];
+            i++;
+        } else {
+            array[k] = rightArr[j];
+            j++;
+        }
+
+        // Highlight all swapped/moved elements in red
+        for (let x = left; x <= k; x++) {
+            bars[x].classList.add('highlight-red');
+        }
+        await pause(delay);
+
+        // Remove red highlights after movement
+        for (let x = left; x <= k; x++) {
+            bars[x].classList.remove('highlight-red');
+        }
+        for (let x = left; x <= right; x++) {
+            bars[x].classList.remove('highlight-yellow');
+        }
+
+        k++;
+    }
+
+    while (i < leftArr.length) {
+        renderArray();
+        const bars = document.querySelectorAll('.array-bar');
+
+        // Highlight remaining elements in yellow
+        for (let x = left; x <= right; x++) {
+            bars[x].classList.add('highlight-yellow');
+        }
+        await pause(delay);
+
+        array[k] = leftArr[i];
+        i++;
+
+        // Highlight all swapped/moved elements in red
+        for (let x = left; x <= k; x++) {
+            bars[x].classList.add('highlight-red');
+        }
+        await pause(delay);
+
+        // Remove red and yellow highlights
+        for (let x = left; x <= k; x++) {
+            bars[x].classList.remove('highlight-red');
+        }
+        for (let x = left; x <= right; x++) {
+            bars[x].classList.remove('highlight-yellow');
+        }
+
+        k++;
+    }
+
+    while (j < rightArr.length) {
+        renderArray();
+        const bars = document.querySelectorAll('.array-bar');
+
+        // Highlight remaining elements in yellow
+        for (let x = left; x <= right; x++) {
+            bars[x].classList.add('highlight-yellow');
+        }
+        await pause(delay);
+
+        array[k] = rightArr[j];
+        j++;
+
+        // Highlight all swapped/moved elements in red
+        for (let x = left; x <= k; x++) {
+            bars[x].classList.add('highlight-red');
+        }
+        await pause(delay);
+
+        // Remove red and yellow highlights
+        for (let x = left; x <= k; x++) {
+            bars[x].classList.remove('highlight-red');
+        }
+        for (let x = left; x <= right; x++) {
+            bars[x].classList.remove('highlight-yellow');
+        }
+
+        k++;
+    }
+
+    renderArray(); // Final render
+}
+
+
+async function partition(arr, low, high) {
+    const pivot = arr[high];  
+    let i = low - 1;
+
+    renderArray();
+    const bars = document.querySelectorAll('.array-bar');
+
+    // Highlight pivot in yellow
+    bars[high].classList.add('highlight-yellow');
+    await pause(delay);
+
+    for (let j = low; j < high; j++) {
+        // Highlight all elements being compared
+        bars[j].classList.add('highlight-yellow');
+        await pause(delay);
+
+        if (arr[j] < pivot) {
+            i++;
+
+            // Highlight swapped elements in red BEFORE swapping
+            bars[i].classList.add('highlight-red');
+            bars[j].classList.add('highlight-red');
+            await pause(delay); // Let red highlight appear before swapping
+
+            // Swap elements
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+            renderArray();
+            await pause(delay); // Pause to show the swap visually
+
+            // Update bar references after re-render
+            const updatedBars = document.querySelectorAll('.array-bar');
+            updatedBars[i].classList.add('highlight-red');
+            updatedBars[j].classList.add('highlight-red');
+            await pause(delay); // Let red stay a bit before removal
+
+            // Remove red highlight after swap
+            updatedBars[i].classList.remove('highlight-red');
+            updatedBars[j].classList.remove('highlight-red');
+        }
+
+        // Remove yellow highlight after comparison
+        bars[j].classList.remove('highlight-yellow');
+    }
+
+    // Swap pivot with correct position
+    bars[i + 1].classList.add('highlight-red');
+    bars[high].classList.add('highlight-red');
+    await pause(delay);
+
+    [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
+    renderArray();
+    await pause(delay); // Pause to let the swap be seen
+
+    // Update bar references after re-render
+    const updatedBars = document.querySelectorAll('.array-bar');
+    updatedBars[i + 1].classList.add('highlight-red');
+    updatedBars[high].classList.add('highlight-red');
+    await pause(delay);
+
+    // Remove red highlights after final swap
+    updatedBars[i + 1].classList.remove('highlight-red');
+    updatedBars[high].classList.remove('highlight-red');
+    updatedBars[high].classList.remove('highlight-yellow');
+
+    return i + 1;
+}
+
+async function quickSortHelper(arr, low, high) {
+    if (low < high) {
+        const pivotIndex = await partition(arr, low, high);
+        await quickSortHelper(arr, low, pivotIndex - 1);
+        await quickSortHelper(arr, pivotIndex + 1, high);
+    }
+}
+
+async function quickSort() {
+    disableButtons();
+    await quickSortHelper(array, 0, array.length - 1);
+    enableButtons();
+}
+
+async function heapSort() {
+    disableButtons();
+
+    const n = array.length;
+
+    // Build max heap
+    for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
+        await heapify(array, n, i);
+    }
+
+    // Extract elements from heap one by one
+    for (let i = n - 1; i > 0; i--) {
+        renderArray();
+        const bars = document.querySelectorAll('.array-bar');
+
+        // Highlight swapped elements in red BEFORE swapping
+        bars[0].classList.add('highlight-red');
+        bars[i].classList.add('highlight-red');
+        await pause(delay); // Allow animation to be visible
+
+        [array[0], array[i]] = [array[i], array[0]];
+        renderArray();
+        await pause(delay); // Show swap before continuing
+
+        // Remove red highlight after swap
+        bars[0].classList.remove('highlight-red');
+        bars[i].classList.remove('highlight-red');
+
+        await heapify(array, i, 0);
+    }
+
+    enableButtons();
+}
+
+async function heapify(arr, heapSize, rootIndex) {
+    let largest = rootIndex;
+    let left = 2 * rootIndex + 1;
+    let right = 2 * rootIndex + 2;
+
+    renderArray();
+    const bars = document.querySelectorAll('.array-bar');
+
+    // Highlight current node and children in yellow
+    bars[rootIndex].classList.add('highlight-yellow');
+    if (left < heapSize) bars[left].classList.add('highlight-yellow');
+    if (right < heapSize) bars[right].classList.add('highlight-yellow');
+
+    await pause(delay); // Allow highlight to be visible
+
+    if (left < heapSize && arr[left] > arr[largest]) {
+        largest = left;
+    }
+
+    if (right < heapSize && arr[right] > arr[largest]) {
+        largest = right;
+    }
+
+    if (largest !== rootIndex) {
+        // Highlight swapped elements in red BEFORE swapping
+        bars[rootIndex].classList.add('highlight-red');
+        bars[largest].classList.add('highlight-red');
+        await pause(delay); // Allow animation to be visible
+
+        [arr[rootIndex], arr[largest]] = [arr[largest], arr[rootIndex]];
+        renderArray();
+        await pause(delay); // Show swap before continuing
+
+        // Remove red highlight after swap
+        bars[rootIndex].classList.remove('highlight-red');
+        bars[largest].classList.remove('highlight-red');
+
+        await heapify(arr, heapSize, largest);
+    }
+
+    // Remove yellow highlights after comparison
+    bars[rootIndex].classList.remove('highlight-yellow');
+    if (left < heapSize) bars[left].classList.remove('highlight-yellow');
+    if (right < heapSize) bars[right].classList.remove('highlight-yellow');
+}
+
+
+// Function to highlight multiple bars
+function highlightBars(bars, startIndex, className) {
+    for (let i = startIndex; i < bars.length; i++) {
+        bars[i].classList.add(className);
+    }
+}
+
+// Function to remove highlights from all bars
+function removeHighlight() {
+    document.querySelectorAll('.array-bar').forEach(bar => {
+        bar.classList.remove('highlight-red', 'highlight-yellow');
+    });
+}
+
+
+function highlightMovingBar(index) {
+    document.querySelectorAll('.array-bar')[index]?.classList.add('highlight-red');
+}
+
+function highlightUpcomingBar(index) {
+    document.querySelectorAll('.array-bar')[index]?.classList.add('highlight-yellow');
+}
+
+function removeHighlight() {
+    document.querySelectorAll('.array-bar').forEach(bar => {
+        bar.classList.remove('highlight-red', 'highlight-yellow');
+    });
+}
+
+
+
+
+  
+    function disableButtons() {
+        document.querySelectorAll('button').forEach(button => button.disabled = true);
+    }
+
+    function enableButtons() {
+        document.querySelectorAll('button').forEach(button => button.disabled = false);
+    }
+
+    function pause(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+
+
+    generateRandomArray(); // Generate initial random array
+</script>
+
+<script>
     document.addEventListener("DOMContentLoaded", async function () {
         // Initialize Driver.js
         const driver = new Driver({
@@ -1007,84 +1522,103 @@ function getSize() {
     
         // Define tour steps
         const steps = [
-    {
-      element: ".list-container",
-      popover: {
-        title: "Queues Visualization",
-        description: "This is the container where the queue operations and visualizations happen.",
-        position: "top"
-      }
-    },
-    {
-      element: "#new-node-value",
-      popover: {
-        title: "Input Field",
-        description: "Enter the value you want to enqueue here.",
-        position: "top"
-      }
-    },
-    {
-      element: ".Enqueue",
-      popover: {
-        title: "Enqueue Button",
-        description: "Click to add a new node to the end of the queue.",
-        position: "top"
-      }
-    },
-    {
-      element: ".Dequeue",
-      popover: {
-        title: "Dequeue Button",
-        description: "Click to remove the front node from the queue.",
-        position: "top"
-      }
-    },
-    {
-      element: ".Peek",
-      popover: {
-        title: "Peek Button",
-        description: "Displays the front node of the queue without removing it.",
-        position: "top"
-      }
-    },
-    {
-      element: ".isEmpty",
-      popover: {
-        title: "IsEmpty Button",
-        description: "Checks if the queue is empty.",
-        position: "top"
-      }
-    },
-    {
-      element: ".getSize",
-      popover: {
-        title: "Get Size Button",
-        description: "Shows the current size of the queue.",
-        position: "top"
-      }
-    },
+        {
+          element: "#array-container",
+          popover: {
+            title: "Sorting Visualization",
+            description: "This is the main container where sorting visualizations will be shown.",
+            position: "top",
+          }
+        },
+        {
+          element: "#array-input",
+          popover: {
+            title: "Input Field",
+            description: "Enter numbers separated by commas to create your custom array.",
+            position: "bottom",
+          }
+        },
+        {
+          element: "#generateArray",
+          popover: {
+            title: "Generate Arrays Button",
+            description: "Click to generate an array from your input.",
+            position: "bottom",
+          }
+        },
+        {
+          element: "#generateRandomArray",
+          popover: {
+            title: "Generate Random Arrays Button",
+            description: "Click to generate a random array with default size 10.",
+            position: "bottom",
+          }
+        },
+        {
+          element: ".bubblesort",
+          popover: {
+            title: "Bubble Sort Button",
+            description: "Visualize sorting using the Bubble Sort algorithm.",
+            position: "top",
+          }
+        },
+        {
+          element: ".selectionsort",
+          popover: {
+            title: "Selection Sort Button",
+            description: "Visualize sorting using the Selection Sort algorithm.",
+            position: "top",
+          }
+        },
+        {
+          element: ".insertionsort",
+          popover: {
+            title: "Insertion Sort Button",
+            description: "Visualize sorting using the Insertion Sort algorithm.",
+            position: "top",
+          }
+        },
+        {
+          element: ".mergesort",
+          popover: {
+            title: "Merge Sort Button",
+            description: "Visualize sorting using the Merge Sort algorithm.",
+            position: "top",
+          }
+        },
+        {
+          element: ".quicksort",
+          popover: {
+            title: "Quick Sort Button",
+            description: "Visualize sorting using the Quick Sort algorithm.",
+            position: "top",
+          }
+        },
+        {
+          element: ".heapsort",
+          popover: {
+            title: "Heap Sort Button",
+            description: "Visualize sorting using the Heap Sort algorithm.",
+            position: "top",
+          }
+        }
+      ];
 
-    {
-      element: "#peek-output",
-      popover: {
-        title: "Output Display",
-        description: "Shows the result of the performed operations.",
-        position: "top"
-      }
-    }
-  ];
-
-        // Start the tour asynchronously after a delay
-        await new Promise(resolve => setTimeout(resolve, 1000)); // 1-second delay
+      // Start the tour asynchronously after a delay
+      await new Promise(resolve => setTimeout(resolve, 1000)); // 1-second delay
         driver.defineSteps(steps);
         driver.start();
     });
 
-  </script>
+</script>
 
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-  <script type="text/javascript" src="js/custom.js"></script>
+
+
+
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+</body>
 </html>
