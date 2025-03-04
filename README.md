@@ -29,6 +29,7 @@ This **Queues Visualization** is an interactive learning tool that demonstrates 
 ## Technologies Used
 - HTML
 - CSS
+- Bootstrap
 - JavaScript
 - Vue.js
 
